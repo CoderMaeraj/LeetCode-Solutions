@@ -1,17 +1,12 @@
 class Solution:
     def mostFrequentEven(self, nums: list[int]) -> int:
         hashi = {}
-        nums.sort()
-        n = len(nums)
-        for i in range(n):
-            if hashi.get(nums[i],0):
-                hashi[nums[i]] += 1
-            else:
-                if nums[i]%2 == 0:
-                    hashi[nums[i]] = 1
+        for num in nums:
+            if num%2 == 0:
+                hashi[num] = hashi.get(num,0) + 1
         val = 0
         key = -1
         for (k,v) in hashi.items():
-            if v > val:
+            if (v > val) or (v==val and k < key):
                 key, val = k,v
         return key
