@@ -4,6 +4,8 @@ class Solution:
         for num in nums:
             if num%2 == 0:
                 hashi[num] = hashi.get(num,0) + 1
+        if not hashi:
+            return -1
         val = 0
         key = -1
         for (k,v) in hashi.items():
