@@ -5,7 +5,7 @@ class ListNode:
         self.next = next
 
 class Solution:
-    def merge2Lists(self,l1 : list[ListNode | None],l2 : list[ListNode | None]) -> ListNode | None:
+    def merge2Lists(self,l1 : ListNode | None,l2 : ListNode | None) -> ListNode | None:
         temp1 = l1
         temp2 = l2
         dummy = ListNode()
@@ -28,7 +28,8 @@ class Solution:
         n = len(lists)
         if n == 0:
             return ListNode().next
-        dummy = lists[0]
-        for i in range(1,n):
-            dummy = self.merge2Lists(dummy,lists[i])
-        return dummy
+        if n == 1:
+            return lists[0]
+        L = self.mergeKLists(lists[:n//2])
+        R = self.mergeKLists(lists[n//2:])
+        return self.merge2Lists(L,R)
